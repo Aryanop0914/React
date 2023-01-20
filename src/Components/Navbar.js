@@ -7,8 +7,7 @@ export default function Navbar() {
      <div className="logo">
          <h3>Homestay<span>.</span></h3>
      </div>
-          
-      <right>
+     
         <div className="menu">
           <ul>
             <li className="active"><a href="">Home</a></li>
@@ -17,7 +16,7 @@ export default function Navbar() {
             <li><a href="">Contact</a></li>
           </ul>
         </div>
-      </right>
+      
      
      
      </nav>

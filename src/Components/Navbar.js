@@ -2,25 +2,23 @@ import React from 'react'
 
 export default function Navbar() {
   return (
-    <nav className="navbar">
-
-     <div className="logo">
-         <h3>Homestay<span>.</span></h3>
-     </div>
-     
-        <div className="menu">
-          <ul>
-            <li className="active"><a href="">Home</a></li>
-            <li><a href="">For Owners</a></li>
-            <li><a href="">About Us</a></li>
-            <li><a href="">Contact</a></li>
-            <a href="login.php" id="login">hiiheelo</a>
-            
-          
-          </ul>
-        </div>
-          
-     
-     </nav>
+    <nav className="navbar navbar-expand-lg sticky-top bg-body-tertiary">
+  <div className="container-fluid">
+    <a className="logo" href="#">Homestay<span>.</span></a>
+    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span className="navbar-toggler-icon"></span>
+    </button>
+    <div className="d-flex">
+      <div className="collapse navbar-collapse " id="navbarNavAltMarkup">
+      <div className="navbar-nav">
+        <a className="nav-link active" aria-current="page" href="#">Home</a>
+        <a className="nav-link mx-3" href="#">For Owners</a>
+        <a className="nav-link" href="#">About Us</a>
+        <a className="nav-link mx-3 " href="#">Contact</a>
+      </div>
+      </div>
+    </div>
+  </div>
+</nav>
   )
 }

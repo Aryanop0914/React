@@ -1,15 +1,13 @@
 import './App.css';
 import Navbar from './Components/Navbar';
-import Check from './Components/Check';
+import Header1 from './Components/Header1';
 
 function App() {
   return (
     <>
         <Navbar/>
-        <Check/>
-
+        <Header1/>
     </>
-   
   );
 }
 

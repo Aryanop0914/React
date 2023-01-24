@@ -87,6 +87,13 @@ body {
 	font-size: 20px
 }
 
+.login .linksignup{
+	border: none;
+	background-color: white;
+	color: blue;
+	font-size: 20px;
+}
+
 
 .signup{
 	width: 400px;

@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 export default function Navbar() {
   return (
@@ -15,6 +16,8 @@ export default function Navbar() {
         <a className="nav-link mx-3" href="#">For Owners</a>
         <a className="nav-link" href="#">About Us</a>
         <a className="nav-link mx-3 " href="#">Contact</a>
+        <Link to="/login">Login</Link>
+
       </div>
       </div>
     </div>

@@ -12,11 +12,11 @@ export default function Navbar() {
     <div className="d-flex">
       <div className="collapse navbar-collapse " id="navbarNavAltMarkup" >
       <div className="navbar-nav">
-        <a className="nav-link active" aria-current="page" href="#">Home</a>
-        <a className="nav-link mx-3" href="#">For Owners</a>
-        <a className="nav-link" href="#">About Us</a>
-        <a className="nav-link mx-3 " href="#">Contact</a>
-        <Link to="/login">Login</Link>
+        <Link to="/home" className="nav-link active">Home</Link>
+        <Link to="/forowners" className="nav-link mx-3">For Owners</Link>
+        <Link to="/about" className="nav-link ">About</Link>
+        <Link to="/contact" className="nav-link mx-3">Contact</Link>
+        <Link to="/login" className="loginbtn">Login</Link>
 
       </div>
       </div>

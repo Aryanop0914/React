@@ -7,14 +7,14 @@ export default function login() {
     <>
       <div className="login">
         <form> 
-          <div className="mb-3">            
-             <h2>Login Form</h2>
+          <div className="mb-4">            
+             <h2>Login Form📂</h2>
           </div>
-          <div className="mb-3 text-start">            
+          <div className="mb-4 text-start">            
             <label htmlFor="InputEmail1" className="form-label">Email address</label>
             <input type="email" className="form-control" id="InputEmail1" placeholder='Enter Your Email'/>
           </div>
-          <div className="mb-3 text-start">
+          <div className="mb-4 text-start">
             <label htmlFor="InputPassword1" className="form-label">Password</label>
             <input type="password" className="form-control" id="InputPassword1" placeholder='Enter Your Password'/>
           </div>

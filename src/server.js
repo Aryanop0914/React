@@ -1,13 +1,12 @@
 const {MongoClient}=require('mongodb');
-const databaseNAme='e-comm';
-// const MongoClient=require('mongodb').MongoClient;
-const url='mongodb://127.0.0.1:27017';
+const databaseName='e-comm';
+const url='mongodb+srv://Aryan0914:hetal1977@sgp.pfvb50a.mongodb.net/?retryWrites=true&w=majority';
 const client = new MongoClient(url);
 
  async function getData()
 {
-    let result= await client.connect();
-    let db=result.db(databaseNAme);
+    let result=await client.connect();
+    let db=result.db(databaseName);
     let collection=db.collection('products');
     let response= await collection.find().toArray();
     console.log(response);

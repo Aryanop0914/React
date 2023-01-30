@@ -208,9 +208,23 @@ body {
 	text-align: center;
 }
 
+<<<<<<< HEAD
 .info img{
 	padding: 10px 0px;
 }
 
 
 
+=======
+.info .img{
+	margin: 15px 30px
+}
+
+.info .service-item{
+	color: white;
+}
+
+.info .col{
+	margin: 15px
+}
+>>>>>>> 9155687730b623182f0ddbf2e3773cc3aaf14e15

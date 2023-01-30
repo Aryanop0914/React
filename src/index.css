@@ -200,9 +200,17 @@ body {
 }
 
 .info{
-	background-color:rgb(54, 54, 54) ;
+	background-color:rgb(54, 54, 54);
+	color: white;
+	padding-top:20px;
 }
 .info .container{
 	text-align: center;
 }
+
+.info img{
+	padding: 10px 0px;
+}
+
+
 

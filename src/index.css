@@ -199,4 +199,10 @@ body {
 
 }
 
+.info{
+	background-color:rgb(54, 54, 54) ;
+}
+.info .container{
+	text-align: center;
+}
 

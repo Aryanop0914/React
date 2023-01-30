@@ -206,3 +206,14 @@ body {
 	text-align: center;
 }
 
+.info .img{
+	margin: 15px 30px
+}
+
+.info .service-item{
+	color: white;
+}
+
+.info .col{
+	margin: 20px
+}

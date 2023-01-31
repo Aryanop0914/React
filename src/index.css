@@ -208,15 +208,12 @@ body {
 	text-align: center;
 }
 
-.info .img{
-	margin: 15px 30px
-}
-
-.info .service-item{
-	color: white;
+.info img{
+	padding: 10px 0px;
 }
 
 .info .col{
-	margin: 15px
+	padding-left:30px;
+	padding-right: 30px;
+	padding-bottom: 20px;
 }
-

@@ -1,22 +1,15 @@
-import React,{ Component } from 'react'
-import { Link} from 'react-router-dom'
+import React,{ useState } from 'react'
+import { Link } from 'react-router-dom'
 
-export default class Signup extends Component{
-constructor(props){
-  super(props);
-  this.state={
-    username1:"",
-    email1:"",
-    password1:"",
-    cpassword1:"",
-  };
-  this.handleSubmit = this.handleSubmit.bind(this);
-}
+export default function Signup(){
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-  handleSubmit(e){
+
+  function handleSubmit(e){
     e.preventDefault();
-    const{username1,email1,password1,cpassword1}= this.state;
-    console.log(username1,email1,password1,cpassword1);
+    console.log(username,email,password);
     fetch("http://localhost:5000/register",{
       method:"POST",
       crossDomain:true,
@@ -26,51 +19,41 @@ constructor(props){
         "Access-Control-Allow-Origin":"*",
       },
       body:JSON.stringify({
-        username1,
-        email1,
-        password1,
-        cpassword1,
+        username,
+        email,
+        password,
       }),
     }).then((res)=>res.json())
     .then((data)=>{
-      console.log(data,"Registration Successful");
+      if( data.error==='User Exists'){
+              window.alert("User already Exists.    Cannot register with same email id.");
+              console.log("Invalid Registration");
+        }else{
+          console.log(data,"Registration Successful");
+          window.alert("Registration Successful Login by the login page");
+        }
+
     })
   }
-  
-    // const data =await res.join();
-    // if(data.status === 422 || !data){
-    //       window.alert("Invalid Registration");
-    //       console.log("Invalid Registration");
-    // }else{
-    //       window.alert(" Registration Successful");
-    //       console.log(" Registration Successful");
-    //       navigate.push("/login");
-    // }
-  //  }
-  render(){
     return (
       <>
 
         <div className="signup">
-          <form method="POST" onSubmit={this.handleSubmit}>
+          <form method="POST" onSubmit={handleSubmit}>
             <div className="mb-4">
               <h2>Signup Form📂</h2>
             </div>
             <div className="mb-4 text-start ">
-              <label htmlFor="username1" className="form-label">Username</label>
-              <input type="text" className="form-control" name="username1" id="username1"  onChange={(e)=>this.setState({username1:e.target.value})} placeholder='Enter Your Username' autoComplete=''/>
+              <label htmlFor="username" className="form-label">Username</label>
+              <input type="text" className="form-control" name="username" id="username"  onChange={(e)=>setUsername(e.target.value)} placeholder='Enter Your Username' autoComplete=''/>
             </div>
             <div className="mb-4 text-start">
-              <label htmlFor="email1" className="form-label">Email address</label>
-              <input type="email" className="form-control" name="email1" id="email1" onChange={(e)=>this.setState({email1:e.target.value})} placeholder='Enter Your Email' autoComplete=''/>
+              <label htmlFor="email" className="form-label">Email address</label>
+              <input type="email" className="form-control" name="email" id="email" onChange={(e)=>setEmail(e.target.value)} placeholder='Enter Your Email' autoComplete=''/>
             </div>
             <div className="mb-4 text-start">
-              <label htmlFor="password1" className="form-label">Password</label>
-              <input type="password" className="form-control" name="password1" id="password1"  onChange={(e)=>this.setState({password1:e.target.value})} placeholder='Enter Your Password' autoComplete=''/>
-            </div>
-            <div className="mb-4 text-start">
-              <label htmlFor="cpassword1" className="form-label"> Confirm Password</label>
-              <input type="password" className="form-control" name="cpassword1" id="cpassword1"  onChange={(e)=>this.setState({cpassword1:e.target.value})} placeholder='Enter Your Password' autoComplete='' />
+              <label htmlFor="password" className="form-label">Password</label>
+              <input type="password" className="form-control" name="password" id="password"  onChange={(e)=>setPassword(e.target.value)} placeholder='Enter Your Password' autoComplete=''/>
             </div>
             <p>Already registered... <Link to="/login">Login</Link></p>
             <button type="submit"  className="btn btn-primary">Sign Up</button>
@@ -80,4 +63,3 @@ constructor(props){
       </>
     );
   }
-}

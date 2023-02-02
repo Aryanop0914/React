@@ -5,7 +5,8 @@ export default class Navbar extends Component{
   constructor(props){
     super(props);
     this.state={
-      userData:"",
+      userData:"Login",
+      loginbtn:"true",
     };
   }
 
@@ -25,8 +26,14 @@ componentDidMount(){
     .then((data)=>{
         console.log(data,"userData");
         this.setState({userData:data.data});
-    })
+        this.setState({loginbtn:false})
+    }); 
+
   }
+    logout=()=>{
+    window.localStorage.clear();
+    window.location.href="/";
+  };
 
   render(){
   return (
@@ -43,8 +50,9 @@ componentDidMount(){
         <Link to="/forowners" className="nav-link mx-3">For Owners</Link>
         <Link to="/about" className="nav-link ">About</Link>
         <Link to="/contact" className="nav-link mx-3">Contact</Link>
-        <Link to="/login" className="loginbtn">{this.state.userData.username}</Link>
-
+        
+        <Link to="/login" className=" loginbtn btn nav-link">{this.loginbtn ? <h1>Login</h1> : this.state.userData.username}</Link>
+        <button className="btn btn-danger mx-3" onClick={this.logout}>Log Out</button>
       </div>
       </div>
     </div>

@@ -23,11 +23,12 @@ export default function Login() {
       }),
     }).then((res)=>res.json())
     .then((data)=>{
-      if( data.status==='ok'){
+      if( data.status ==='ok'){
               window.alert("Login successful");
               window.localStorage.setItem("token",data.data);
               window.location.href="/"; 
         }
+      // console.log(data,"wrong");
 
     })
   }

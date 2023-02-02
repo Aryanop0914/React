@@ -24,7 +24,7 @@ app.post("/register",async(req,res)=>{
     try{
         const oldUser= await User.findOne({email});
         if(oldUser){
-           return res.send({error:"User Exists"});
+           return res.json({error:"User Exists"});
         }
         await User.create({
             username,
@@ -33,25 +33,28 @@ app.post("/register",async(req,res)=>{
         });
         res.send({status:"ok"});
     }  catch(err){
-        res.send({status:"err"});
+        console.log(err);
+        res.send({status:"error"});
     }
 })
 
 app.post("/login",async(req,res)=>{
-    const {email , password} = req.body;
-    const user= await User.findOne({email});
+    const {email1 , password} = req.body;
+    const user = await User.findOne({ email1 });
     if(!user){
-       return res.send({error:"User Not Found"});   
+    return res.json({error:"User Not Found"});   
     }
     if(await bcrypt.compare(password,user.password)){
-        const token=jwt.sign({email:user.email},JWT_SECRET);
+        const token = jwt.sign({ email: user.email }, JWT_SECRET, {
+            expiresIn: "15m",
+          });
         if(res.status(201)){
-            return res.send({status:"ok" , data:token});
+            return res.json({status:"ok" , data:token});
         }else{
-            return res.send({status:"error" , error:"Invalid password"});
+            return res.json({status:"error" , error:"Invalid password"});
         }
     }
-    res.send({})
+    res.send({status:"error"})
 });
 
 app.post("/userData", async(req,res)=>{

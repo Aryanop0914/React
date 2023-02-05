@@ -68,8 +68,30 @@ app.post("/userData", async(req,res)=>{
         res.send({ status:"error" , data:error});
 
      });
-   }catch(er){}
+   }catch(er){console.log(er)}
 })
+
+// require("./userDetails");
+// const roominfo=mongoose.model("Userinfo");
+// app.post("/owner",async(req,res)=>{
+//     const{username,email,password}=req.body;
+//     const encyptedPassword = await bcrypt.hash(password,10);
+//     try{
+//         const oldUser= await User.findOne({email});
+//         if(oldUser){
+//            return res.json({error:"User Exists"});
+//         }
+//         await User.create({
+//             username,
+//             email,
+//             password:encyptedPassword,
+//         });
+//         res.send({status:"ok"});
+//     }  catch(err){
+//         console.log(err);
+//         res.send({status:"error"});
+//     }
+// })
 
 
 

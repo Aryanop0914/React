@@ -32,6 +32,7 @@ componentDidMount(){
   }
     logout=()=>{
     window.localStorage.clear();
+    window.localStorage.removeItem("loginbtn");
     window.location.href="/";
   };
 
@@ -47,11 +48,11 @@ componentDidMount(){
       <div className="collapse navbar-collapse " id="navbarNavAltMarkup" >
       <div className="navbar-nav">
         <Link to="/" className="nav-link active">Home</Link>
-        <Link to="/forowners" className="nav-link mx-3">For Owners</Link>
-        <Link to="/about" className="nav-link ">About</Link>
-        <Link to="/contact" className="nav-link mx-3">Contact</Link>
-        <Link to="/login" className=" loginbtn btn nav-link">{this.loginbtn ? <h1>Login</h1> : this.state.userData.username}</Link>
-        <button className="btn btn-danger mx-3" onClick={this.logout}>Log Out</button>
+        {this.state.loginbtn? <div className="nav-link mx-3"> For Owners</div> :<Link to="/forowners" className="nav-link mx-3">For Owners</Link>}
+        {/* <Link to="/about" className="nav-link ">About</Link>
+        <Link to="/contact" className="nav-link mx-3">Contact</Link> */}
+        {this.state.loginbtn ?<Link to="/login" className=" loginbtn btn nav-link"> Login </Link> : <div className=" loginbtn btn nav-link">{this.state.userData.username} </div>}
+        {this.state.loginbtn ? " ": <button className="btn btn-danger mx-3" onClick={this.logout}>Log Out</button>}
       </div>
       </div>
     </div>

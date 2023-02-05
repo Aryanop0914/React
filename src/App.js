@@ -5,6 +5,7 @@ import Home from './Pages/Home';
 import About from './Components/About';
 import Contact from './Components/Contact';
 import Info from './Components/Info';
+import Forowners from "./Pages/Forowners";
 
 function App() {
   
@@ -12,7 +13,8 @@ function App() {
     <>
     <div className="App">
         <Routes>
-          <Route path="/" element={ <Home/> } />
+          <Route path="/" element={ <Home/> } />  
+          <Route path="/forowners" element={<Forowners/> } />
           <Route path="/about" element={<About/> } />
           <Route path="/contact" element={ <Contact/> } />
           <Route path="/Info" element={ <Info/> } />

@@ -6,7 +6,7 @@ const cors=require("cors");
 app.use(cors());
 const bcrypt=require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const JWT_SECRET = "aduygfdgfrgfg[]rt]h[j35734tuiergoiue4t/][5y=y8474842hrksejfh/dfeff4548971easf659e";
+const JWT_SECRET = "gueiuguxfgvyglou388o4i3shgkjdrhgiur36^&(*&hkzdghfta8767w348&^&gaegyuersfgrh4h8468785686%^$$%@*&#(";
 
 const dbUrl="mongodb+srv://Aryan0914:hetal1977@sgp.bwk5tqf.mongodb.net/?retryWrites=true&w=majority";
 

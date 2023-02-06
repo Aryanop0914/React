@@ -46,7 +46,7 @@ app.post("/login",async(req,res)=>{
     }
     if(await bcrypt.compare(password,user.password)){
         const token = jwt.sign({ email: user.email }, JWT_SECRET, {
-            expiresIn: "15m",
+            expiresIn: "150m",
           });
         if(res.status(201)){
             return res.json({status:"ok" , data:token});
@@ -57,43 +57,6 @@ app.post("/login",async(req,res)=>{
     res.send({status:"error"})
 });
 
-app.post("/userData", async(req,res)=>{
-    const {token} = req.body;
-    try{
-     const user =jwt.verify(token,JWT_SECRET);
-     const useremail = user.email;
-     User.findOne({email:useremail}).then((data)=>{
-            res.send({ status:"ok",data:data});
-     }).catch((error)=>{
-        res.send({ status:"error" , data:error});
-
-     });
-   }catch(er){console.log(er)}
-})
-
-// require("./userDetails");
-// const roominfo=mongoose.model("Ownerinfo");
-// app.post("/owner",async(req,res)=>{
-//     const{title,location,images,guest,rooms}=req.body;
-//     // const encyptedPassword = await bcrypt.hash(password,10);
-//     try{
-//         // const oldUser= await User.findOne({email});
-//         // if(oldUser){
-//         //    return res.json({error:"User Exists"});
-//         // }
-//         await roominfo.create({
-//             title,
-//             location,
-//             images,
-//             guest,
-//             rooms,
-//         });
-//         res.send({status:"ok"});
-//     }  catch(err){
-//         console.log(err);
-//         res.send({status:"error"});
-//     }
-// })
 
 
 

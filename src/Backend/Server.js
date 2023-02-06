@@ -5,8 +5,8 @@ app.use(express.json());
 const cors=require("cors");
 app.use(cors());
 const bcrypt=require("bcryptjs");
-const   jwt = require("jsonwebtoken");
-const JWT_SECRET = "aduygfdgfrgfg[]rt]h[j35734tuiergoiue4t/][5y=y8474842hrksejfh/dfeff4548971easf659e"
+const jwt = require("jsonwebtoken");
+const JWT_SECRET = "aduygfdgfrgfg[]rt]h[j35734tuiergoiue4t/][5y=y8474842hrksejfh/dfeff4548971easf659e";
 
 const dbUrl="mongodb+srv://Aryan0914:hetal1977@sgp.bwk5tqf.mongodb.net/?retryWrites=true&w=majority";
 
@@ -39,8 +39,8 @@ app.post("/register",async(req,res)=>{
 })
 
 app.post("/login",async(req,res)=>{
-    const {email1 , password} = req.body;
-    const user = await User.findOne({ email1 });
+    const {email,password} = req.body;
+    const user = await User.findOne({email});
     if(!user){
     return res.json({error:"User Not Found"});   
     }
@@ -72,19 +72,21 @@ app.post("/userData", async(req,res)=>{
 })
 
 // require("./userDetails");
-// const roominfo=mongoose.model("Userinfo");
+// const roominfo=mongoose.model("Ownerinfo");
 // app.post("/owner",async(req,res)=>{
-//     const{username,email,password}=req.body;
-//     const encyptedPassword = await bcrypt.hash(password,10);
+//     const{title,location,images,guest,rooms}=req.body;
+//     // const encyptedPassword = await bcrypt.hash(password,10);
 //     try{
-//         const oldUser= await User.findOne({email});
-//         if(oldUser){
-//            return res.json({error:"User Exists"});
-//         }
-//         await User.create({
-//             username,
-//             email,
-//             password:encyptedPassword,
+//         // const oldUser= await User.findOne({email});
+//         // if(oldUser){
+//         //    return res.json({error:"User Exists"});
+//         // }
+//         await roominfo.create({
+//             title,
+//             location,
+//             images,
+//             guest,
+//             rooms,
 //         });
 //         res.send({status:"ok"});
 //     }  catch(err){

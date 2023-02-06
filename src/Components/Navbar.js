@@ -7,7 +7,7 @@ export default function Navbar () {
   const[loginbtn,setLoginbtn]=useState("true");
  
   useEffect(()=> {
-    fetch("http://localhost:5000/userdata",{
+    fetch("http://localhost:5000/userData",{
       method:"POST",
       crossDomain:true,
       headers:{

@@ -10,14 +10,17 @@ const UserDetailsSchema = new mongoose.Schema({
 );
 mongoose.model("Userinfo",UserDetailsSchema);
 
-// const OwnersSchema = new mongoose.Schema({
-//     title: String,
-//     location: String,
-//     images:String,
-//     guest:String,
-//     rooms:String,
-// },{
-//     collection: "Ownerinfo",
-// }
-// );
-// mongoose.model("Ownerinfo",OwnersSchema);
+const OwnersSchema = new mongoose.Schema({
+    title: String,
+    location: String,
+    images:{
+        data:Buffer,
+        contentType:String
+    },
+    guest:String,
+    rooms:String,
+},{
+    collection: "Ownerinfo",
+}
+);
+mongoose.model("Ownerinfo",OwnersSchema);

@@ -5,6 +5,8 @@ app.use(express.json());
 const cors=require("cors");
 app.use(cors());
 const bcrypt=require("bcryptjs");
+// const multer = require("multer");
+
 const jwt = require("jsonwebtoken");
 const JWT_SECRET = "gueiuguxfgvyglou388o4i3shgkjdrhgiur36^&(*&hkzdghfta8767w348&^&gaegyuersfgrh4h8468785686%^$$%@*&#(";
 
@@ -71,29 +73,41 @@ app.post("/userData", async(req,res)=>{
    }catch(er){console.log(er)}
 })
 
-// require("./userDetails");
-// const roominfo=mongoose.model("Ownerinfo");
-// app.post("/owner",async(req,res)=>{
-//     const{title,location,images,guest,rooms}=req.body;
-//     // const encyptedPassword = await bcrypt.hash(password,10);
-//     try{
-//         // const oldUser= await User.findOne({email});
-//         // if(oldUser){
-//         //    return res.json({error:"User Exists"});
-//         // }
-//         await roominfo.create({
-//             title,
-//             location,
-//             images,
-//             guest,
-//             rooms,
-//         });
-//         res.send({status:"ok"});
-//     }  catch(err){
-//         console.log(err);
-//         res.send({status:"error"});
-//     }
-// })
+// //Storage
+// const Storage=multer.diskStorage({
+//     destination:'uploads',
+//     filename:(req,file,cb)=>{
+//         cb(null,file.originalname);
+//     },
+// });
+
+// const upload=multer ({
+//     storage:Storage
+// }).single('testImage')
+
+require("./userDetails");
+const roominfo=mongoose.model("Ownerinfo");
+app.post("/owner",async(req,res)=>{
+    const{title,location,images,guest,rooms}=req.body;
+    // const encyptedPassword = await bcrypt.hash(password,10);
+    try{
+        // const oldUser= await User.findOne({email});
+        // if(oldUser){
+        //    return res.json({error:"User Exists"});
+        // }
+        await roominfo.create({
+            title,
+            location,
+            images,
+            guest,
+            rooms,
+        });
+        res.send({status:"ok"});
+    }  catch(err){
+        console.log(err);
+        res.send({status:"error"});
+    }
+})
 
 
 

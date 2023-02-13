@@ -289,3 +289,31 @@ body {
 .form input{
 	width: max-content;
 }
+.Contact{
+	background-color:rgb(54, 54, 54);
+	color: white;
+	padding-top:50px;
+}
+.Contact .container{
+	text-align: center;
+	padding-top:10px;
+}
+.Contact .logo {
+	font-size: 25px;
+	font-family: 'Roboto Slab', serif;
+	text-decoration-line: none;
+	color: rgb(255, 255, 255);
+}
+.Contact .logo span{
+	color: rgb(247, 146, 24);
+
+}
+
+.Contact .fa-social i{
+	text-align: center;
+	padding:5px;
+}
+
+.Contact .container .fir{
+	text-align: center;
+}

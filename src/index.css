@@ -108,6 +108,36 @@ body {
 	padding : 100px;
 }
 
+.header2 .container{
+	margin-top: 57px;
+	text-align: center;
+	height: 500px;
+}
+.header2 .part1{
+	padding : 400px 50px;
+}
+
+.header2 .part2{
+	padding : 400px 50px;
+}
+
+.header2 .part1 .btn{
+	background-color: rgb(54, 54, 54);
+	border-color: rgb(0, 0, 0);
+	color:white;
+	padding: 10px 50px;
+	font-size: 20px;
+
+}
+
+.header2 .part2 .btn{
+	background-color: rgb(54, 54, 54);
+	border-color: rgb(0, 0, 0);
+	color:white;
+	padding: 10px 50px;
+	font-size: 20px;
+
+}
 /* Login */
 .login{
 	width: 400px;

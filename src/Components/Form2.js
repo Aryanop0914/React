@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import Navbar from './Navbar';
 
 export default function Form2() {
     const[title,setTitle]=useState(" ");
@@ -39,7 +40,8 @@ export default function Form2() {
   }
   
   return (
-    <>
+    <> 
+    <Navbar/>
         <form className="form2" method="POST" onSubmit={handleinsert}>
             <div className="mb-4 text-start ">
                 <label htmlFor="title" className="form-label">Title:</label>

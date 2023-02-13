@@ -6,6 +6,8 @@ import About from './Components/About';
 import Contact from './Components/Contact';
 import Info from './Components/Info';
 import Forowners from "./Pages/Forowners";
+import Form2 from "./Components/Form2";
+import Pdisplay from './Components/Pdisplay';
 
 function App() {
   
@@ -20,6 +22,8 @@ function App() {
           <Route path="/Info" element={ <Info/> } />
           <Route path="/signup" element={ <Signup/> } />
           <Route path="/login" element={ <Login/> } />
+          <Route path="/form2" element={ <Form2/> } />
+          <Route path="/pdisplay" element={ <Pdisplay/> }/>
           </Routes>
           </div>
       

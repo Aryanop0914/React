@@ -79,8 +79,7 @@ body {
 .header{
 	background-size : cover;
 	background-image:url("../public/images/hero2.jpg");
-	margin-top: 20px;
-	margin-top: 60px;
+	margin-top: 55px;
  
 }
 .header .part1{

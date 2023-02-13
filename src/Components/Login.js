@@ -1,7 +1,8 @@
-import React,{useState} from 'react'
-import { Link } from 'react-router-dom'
+ import React,{useState} from 'react'
+import { Link ,useNavigate} from 'react-router-dom'
 
 export default function Login() {
+  const navigate=useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -23,11 +24,13 @@ export default function Login() {
       }),
     }).then((res)=>res.json())
     .then((data)=>{
-      if( data.status==='ok'){
+      if( data.status ==='ok'){
               window.alert("Login successful");
               window.localStorage.setItem("token",data.data);
-              window.location.href="/"; 
+              window.localStorage.setItem("loggedin",true);
+              navigate("/");
         }
+      // console.log(data,"wrong");
 
     })
   }

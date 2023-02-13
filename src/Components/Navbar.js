@@ -1,16 +1,13 @@
-import React,{Component} from 'react'
-import { Link } from 'react-router-dom'
+import React,{ useEffect,useState}from 'react'
+import { NavLink,useNavigate } from 'react-router-dom';
 
-export default class Navbar extends Component{
-  constructor(props){
-    super(props);
-    this.state={
-      userData:"",
-    };
-  }
-
-componentDidMount(){
-    fetch("http://localhost:5000/userdata",{
+export default function Navbar () {
+  const navigate=useNavigate();
+  const[userdata,setUserdata]=useState("");
+  const[loginbtn,setLoginbtn]=useState("true");
+ 
+  useEffect(()=> {
+    fetch("http://localhost:5000/userData",{
       method:"POST",
       crossDomain:true,
       headers:{
@@ -24,33 +21,42 @@ componentDidMount(){
     }).then((res)=>res.json())
     .then((data)=>{
         console.log(data,"userData");
-        this.setState({userData:data.data});
-    })
-  }
+        setUserdata(data.data);
+        setLoginbtn(false);
+    });
+  },[])
 
-  render(){
+  const  logout=()=>{
+    window.localStorage.clear();
+    window.localStorage.removeItem("loginbtn");
+    setLoginbtn(true);
+    navigate("/");
+      };
+
   return (
-    <nav className="navbar navbar-expand-lg fixed-top bg-body-tertiary">
-  <div className="container-fluid">
-    <Link to="/" className="logo">Homestay<span>.</span></Link>
-    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-      <span className="navbar-toggler-icon"></span>
-    </button>
-    <div className="d-flex">
-      <div className="collapse navbar-collapse " id="navbarNavAltMarkup" >
-      <div className="navbar-nav">
-        <Link to="/" className="nav-link active">Home</Link>
-        <Link to="/forowners" className="nav-link mx-3">For Owners</Link>
-        <Link to="/about" className="nav-link ">About</Link>
-        <Link to="/contact" className="nav-link mx-3">Contact</Link>
-        <Link to="/login" className="loginbtn">{this.state.userData.username}</Link>
-
-      </div>
-      </div>
-    </div>
-  </div>
-</nav>
+    <>
+        <nav className="navbar navbar-expand-lg fixed-top bg-body-tertiary">
+            <div className="container-fluid">
+                <NavLink to="/" className="logo">Homestay<span>.</span></NavLink>
+                <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                    <span className="navbar-toggler-icon"></span>
+                </button>
+              <div className="d-flex">
+                  <div className="collapse navbar-collapse " id="navbarNavAltMarkup" >
+                      <div className="navbar-nav">
+                          <NavLink to="/" className="nav-link" activeclassname="nav-link active">Home</NavLink>
+                             {loginbtn ? <div className="nav-link mx-3"> For Owners</div> :<NavLink to="/forowners" className="nav-link mx-3" activeclassname="nav-link active">For Owners</NavLink>}
+                             {/* <Link to="/about" className="nav-link ">About</Link>
+                             <Link to="/contact" className="nav-link mx-3">Contact</Link> */}
+                             {loginbtn ?<NavLink to="/login" className=" loginbtn btn nav-link"> Login </NavLink> : <div className=" loginbtn btn nav-link">{userdata.username} </div>}
+                             {loginbtn ? " ": <button className="btn btn-danger mx-3" onClick={logout}>Log Out</button>}
+                      </div>
+                  </div>
+              </div>
+            </div>
+        </nav>
+      
+    </>
   )
-}
 }
 

@@ -25,8 +25,8 @@ export default function Signup(){
       }),
     }).then((res)=>res.json())
     .then((data)=>{
-      if( data.error==='User Exists'){
-              window.alert("User already Exists.    Cannot register with same email id.");
+      if( data.error ==='User Exists'){
+              window.alert("User already Exists.");
               console.log("Invalid Registration");
         }else{
           console.log(data,"Registration Successful");

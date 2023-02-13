@@ -5,8 +5,10 @@ app.use(express.json());
 const cors=require("cors");
 app.use(cors());
 const bcrypt=require("bcryptjs");
-const   jwt = require("jsonwebtoken");
-const JWT_SECRET = "aduygfdgfrgfg[]rt]h[j35734tuiergoiue4t/][5y=y8474842hrksejfh/dfeff4548971easf659e"
+// const multer = require("multer");
+
+const jwt = require("jsonwebtoken");
+const JWT_SECRET = "gueiuguxfgvyglou388o4i3shgkjdrhgiur36^&(*&hkzdghfta8767w348&^&gaegyuersfgrh4h8468785686%^$$%@*&#(";
 
 const dbUrl="mongodb+srv://Aryan0914:hetal1977@sgp.bwk5tqf.mongodb.net/?retryWrites=true&w=majority";
 
@@ -24,7 +26,7 @@ app.post("/register",async(req,res)=>{
     try{
         const oldUser= await User.findOne({email});
         if(oldUser){
-           return res.send({error:"User Exists"});
+           return res.json({error:"User Exists"});
         }
         await User.create({
             username,
@@ -33,25 +35,28 @@ app.post("/register",async(req,res)=>{
         });
         res.send({status:"ok"});
     }  catch(err){
-        res.send({status:"err"});
+        console.log(err);
+        res.send({status:"error"});
     }
 })
 
 app.post("/login",async(req,res)=>{
-    const {email , password} = req.body;
-    const user= await User.findOne({email});
+    const {email,password} = req.body;
+    const user = await User.findOne({email});
     if(!user){
-       return res.send({error:"User Not Found"});   
+    return res.json({error:"User Not Found"});   
     }
     if(await bcrypt.compare(password,user.password)){
-        const token=jwt.sign({email:user.email},JWT_SECRET);
+        const token = jwt.sign({ email: user.email }, JWT_SECRET, {
+            expiresIn: "150m",
+          });
         if(res.status(201)){
-            return res.send({status:"ok" , data:token});
+            return res.json({status:"ok" , data:token});
         }else{
-            return res.send({status:"error" , error:"Invalid password"});
+            return res.json({status:"error" , error:"Invalid password"});
         }
     }
-    res.send({})
+    res.send({status:"error"})
 });
 
 app.post("/userData", async(req,res)=>{
@@ -65,8 +70,45 @@ app.post("/userData", async(req,res)=>{
         res.send({ status:"error" , data:error});
 
      });
-   }catch(er){}
+   }catch(er){console.log(er)}
 })
+
+// //Storage
+// const Storage=multer.diskStorage({
+//     destination:'uploads',
+//     filename:(req,file,cb)=>{
+//         cb(null,file.originalname);
+//     },
+// });
+
+// const upload=multer ({
+//     storage:Storage
+// }).single('testImage')
+
+require("./userDetails");
+const roominfo=mongoose.model("Ownerinfo");
+app.post("/owner",async(req,res)=>{
+    const{title,location,images,guest,rooms}=req.body;
+    // const encyptedPassword = await bcrypt.hash(password,10);
+    try{
+        // const oldUser= await User.findOne({email});
+        // if(oldUser){
+        //    return res.json({error:"User Exists"});
+        // }
+        await roominfo.create({
+            title,
+            location,
+            images,
+            guest,
+            rooms,
+        });
+        res.send({status:"ok"});
+    }  catch(err){
+        console.log(err);
+        res.send({status:"error"});
+    }
+})
+
 
 
 

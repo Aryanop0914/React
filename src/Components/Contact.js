@@ -24,9 +24,9 @@ export default function Contact() {
                             <div className="sec">
                                 <h3>Contact Us</h3>
                                 <ul>
-                                    <p>(12) 345 67890</p>
-                                    <p>info.colorlib@gmail.com</p>
-                                    <p>856 Cordia Extension Apt. 356, Lake, United State</p>
+                                    <p>1234567899</p>
+                                    <p>homestay@gmail.com</p>
+                                    <p>A7, Charusat University, Changa, Gujarat</p>
                                 </ul>
                             </div>
                         </div>

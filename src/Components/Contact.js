@@ -33,7 +33,7 @@ export default function Contact() {
 
                         <div className="col">
                             <div className="third">
-                                <h6>New latest</h6>
+                                <h3>New latest</h3>
                                 <p>Get the latest updates and offers.</p>
                                 <form action="#" className="fn-form">
                                 <input type="text" className="email_in" placeholder="Email"/>

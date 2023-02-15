@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom'
 
 const Header2 = () => {
   return (
-    <>
+    
     <div className="header2">
      <div className="container">
         <div className="row">
@@ -20,7 +20,7 @@ const Header2 = () => {
         </div>
      </div>
     </div>
-    </>
+    
   )
 }
 

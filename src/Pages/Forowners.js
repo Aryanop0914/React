@@ -6,6 +6,7 @@ import Header2 from '../Components/Header2'
 export default function Forowners() {
   return (
     <>
+    
         <Navbar/>
         <Header2/>
         {/* <h1>Add Your Own Property</h1> */}

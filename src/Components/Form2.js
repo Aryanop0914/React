@@ -32,8 +32,8 @@ export default function Form2() {
                       window.alert("User already Exists.");
                       console.log("Invalid Registration");
                 }else{
-                  console.log(data,"Registration Successful");
-                  window.alert("Registration Successful Login by the login page");
+                  console.log(data,"Addition Successful");
+                  window.alert("Your property registered successfully");
                 }
     })
 

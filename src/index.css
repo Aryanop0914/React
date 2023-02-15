@@ -1,5 +1,5 @@
 body {
-  background-color: rgb(255, 255, 255);
+  background-color: rgb(76, 75, 75);
   font-family: 'Roboto',sans-serif;
   margin: 0;
   -webkit-font-smoothing: antialiased;
@@ -122,18 +122,18 @@ body {
 }
 
 .header2 .part1 .btn{
-	background-color: rgb(54, 54, 54);
+	background-color: rgb(255, 255, 255);
 	border-color: rgb(0, 0, 0);
-	color:white;
+	color:rgb(0, 0, 0);
 	padding: 10px 50px;
 	font-size: 20px;
 
 }
 
 .header2 .part2 .btn{
-	background-color: rgb(54, 54, 54);
+	background-color: rgb(255, 255, 255);
 	border-color: rgb(0, 0, 0);
-	color:white;
+	color:rgb(0, 0, 0);
 	padding: 10px 50px;
 	font-size: 20px;
 
@@ -383,6 +383,6 @@ body {
 }
 
 .header2{
-	background-color: #fff;
+	background-color: rgb(76, 75, 75);
 }
 

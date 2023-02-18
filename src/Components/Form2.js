@@ -11,31 +11,31 @@ export default function Form2() {
     function handleinsert(e){
         e.preventDefault();
         console.log(title,location,images,guest,rooms);
-            fetch("http://localhost:5000/owner",{
-              method:"POST",
-              crossDomain:true,
-              headers:{
-                "Content-Type":"application/json",
-                Accept:"application/json",
-                "Access-Control-Allow-Origin":"*",
-              },
-              body:JSON.stringify({
-                title,
-                location,
-                images,
-                guest,
-                rooms,
-              }),
-            }).then((res)=>res.json())
-            .then((data)=>{
-              if( data.error ==='User Exists'){
-                      window.alert("User already Exists.");
-                      console.log("Invalid Registration");
-                }else{
-                  console.log(data,"Addition Successful");
-                  window.alert("Your property registered successfully");
-                }
-    })
+    //         fetch("http://localhost:5000/owner",{
+    //           method:"POST",
+    //           crossDomain:true,
+    //           headers:{
+    //             "Content-Type":"application/json",
+    //             Accept:"application/json",
+    //             "Access-Control-Allow-Origin":"*",
+    //           },
+    //           body:JSON.stringify({
+    //             title,
+    //             location,
+    //             images,
+    //             guest,
+    //             rooms,
+    //           }),
+    //         }).then((res)=>res.json())
+    //         .then((data)=>{
+    //           if( data.error ==='User Exists'){
+    //                   window.alert("User already Exists.");
+    //                   console.log("Invalid Registration");
+    //             }else{
+    //               console.log(data,"Addition Successful");
+    //               window.alert("Your property registered successfully");
+    //             }
+    // })
 
   }
   

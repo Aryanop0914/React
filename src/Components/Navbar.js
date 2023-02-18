@@ -1,11 +1,18 @@
 import React,{ useEffect,useState}from 'react'
-import { NavLink,useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 export default function Navbar () {
   const navigate=useNavigate();
   const[userdata,setUserdata]=useState("");
   const[loginbtn,setLoginbtn]=useState("true");
- 
+
+  const logout=()=>{
+    window.localStorage.clear();
+    window.localStorage.removeItem("loginbtn");
+    setLoginbtn(true);
+    navigate("/");
+      };
+
   useEffect(()=> {
     fetch("http://localhost:5000/userData",{
       method:"POST",
@@ -23,15 +30,15 @@ export default function Navbar () {
         console.log(data,"userData");
         setUserdata(data.data);
         setLoginbtn(false);
+        if (data.data === "token expired") {
+          window.localStorage.clear();
+          window.localStorage.removeItem("loginbtn");
+          setLoginbtn(true);
+        }
     });
   },[])
 
-  const  logout=()=>{
-    window.localStorage.clear();
-    window.localStorage.removeItem("loginbtn");
-    setLoginbtn(true);
-    navigate("/");
-      };
+
 
   return (
     <>

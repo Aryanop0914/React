@@ -6,7 +6,7 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  function handleSubmit(e){
+  const handleSubmit=(e)=>{
     e.preventDefault();
     
     console.log(email,password);
@@ -24,14 +24,16 @@ export default function Login() {
       }),
     }).then((res)=>res.json())
     .then((data)=>{
-      if( data.status ==='ok'){
+      if( data.status ==='Login successful'){
               window.alert("Login successful");
               window.localStorage.setItem("token",data.data);
               window.localStorage.setItem("loggedin",true);
               navigate("/");
         }
-      // console.log(data,"wrong");
-
+      if(data.status==="perror")
+      {
+        window.alert("Login successful");
+      }
     })
   }
       return (

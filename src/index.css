@@ -95,7 +95,7 @@ body {
 
 .header{
 	background-size : cover;
-	background-image:url("../public/images/hero2.jpg");
+	/* background-image:url("../public/images/hero2.jpg"); */
 	margin-top: 55px;
  
 }

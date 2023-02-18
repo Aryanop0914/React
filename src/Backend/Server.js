@@ -1,115 +1,96 @@
-const express = require ("express");
+const express = require("express");
 const app = express();
-const mongoose=require("mongoose");
+const mongoose = require("mongoose");
 app.use(express.json());
-const cors=require("cors");
+const cors = require("cors");
 app.use(cors());
-const bcrypt=require("bcryptjs");
-// const multer = require("multer");
+const bcrypt = require("bcryptjs");
 
 const jwt = require("jsonwebtoken");
-const JWT_SECRET = "gueiuguxfgvyglou388o4i3shgkjdrhgiur36^&(*&hkzdghfta8767w348&^&gaegyuersfgrh4h8468785686%^$$%@*&#(";
+const JWT_SECRET = "hvdvay6ert72839289()aiyg8t87qt72393293883uhefiuh78ttq3ifi78272jbkj?[]]pou89ywe";
 
-const dbUrl="mongodb+srv://Aryan0914:hetal1977@sgp.bwk5tqf.mongodb.net/?retryWrites=true&w=majority";
+const mongoUrl =
+  "mongodb+srv://Aryan0914:hetal1977@sgp.bwk5tqf.mongodb.net/?retryWrites=true&w=majority";
 
-mongoose.connect(dbUrl,{
-    useNewUrlParser:true,
-}).then(()=>{
-    console.log("Connected to Database");
-}).catch((e)=>console.log(e));
+  mongoose
+  .connect(mongoUrl, {
+    useNewUrlParser: true,
+  })
+  .then(() => {
+    console.log("Connected to database");
+  })
+  .catch((e) => console.log(e));
 
 require("./userDetails");
-const User=mongoose.model("Userinfo");
-app.post("/register",async(req,res)=>{
-    const{username,email,password}=req.body;
-    const encyptedPassword = await bcrypt.hash(password,10);
-    try{
-        const oldUser= await User.findOne({email});
-        if(oldUser){
-           return res.json({error:"User Exists"});
-        }
-        await User.create({
-            username,
-            email,
-            password:encyptedPassword,
-        });
-        res.send({status:"ok"});
-    }  catch(err){
-        console.log(err);
-        res.send({status:"error"});
-    }
-})
 
-app.post("/login",async(req,res)=>{
-    const {email,password} = req.body;
-    const user = await User.findOne({email});
-    if(!user){
-    return res.json({error:"User Not Found"});   
+const User = mongoose.model("UserInfo");
+app.post("/signup", async (req, res) => {
+  const { username, email, password} = req.body;
+
+  const encryptedPassword = await bcrypt.hash(password, 10);
+  try {
+    const oldUser = await User.findOne({ email });
+
+    if (oldUser) {
+      return res.json({ error: "User Exists" });
     }
-    if(await bcrypt.compare(password,user.password)){
-        const token = jwt.sign({ email: user.email }, JWT_SECRET, {
-            expiresIn: "150m",
-          });
-        if(res.status(201)){
-            return res.json({status:"ok" , data:token});
-        }else{
-            return res.json({status:"error" , error:"Invalid password"});
-        }
-    }
-    res.send({status:"error"})
+    await User.create({
+      username,
+      email,
+      password: encryptedPassword,
+    });
+    res.send({ status: "Successful Registration" });
+  } catch (error) {
+    console.log(err);
+    res.send({ status: "error" });
+  }
 });
 
-app.post("/userData", async(req,res)=>{
-    const {token} = req.body;
-    try{
-     const user =jwt.verify(token,JWT_SECRET);
-     const useremail = user.email;
-     User.findOne({email:useremail}).then((data)=>{
-            res.send({ status:"ok",data:data});
-     }).catch((error)=>{
-        res.send({ status:"error" , data:error});
+app.post("/login", async (req, res) => {
+  const { email, password } = req.body;
 
-     });
-   }catch(er){console.log(er)}
-})
+  const user = await User.findOne({ email });
+  if (!user) {
+    return res.json({ error: "User Not found" });
+  }
+  if (await bcrypt.compare(password, user.password)) {
+    const token = jwt.sign({ email: user.email }, JWT_SECRET, {
+      expiresIn: "2days",
+    });
 
-// //Storage
-// const Storage=multer.diskStorage({
-//     destination:'uploads',
-//     filename:(req,file,cb)=>{
-//         cb(null,file.originalname);
-//     },
-// });
-
-// const upload=multer ({
-//     storage:Storage
-// }).single('testImage')
-
-require("./userDetails");
-const roominfo=mongoose.model("Ownerinfo");
-app.post("/owner",async(req,res)=>{
-    const{title,location,images,guest,rooms}=req.body;
-    // const encyptedPassword = await bcrypt.hash(password,10);
-    try{
-        // const oldUser= await User.findOne({email});
-        // if(oldUser){
-        //    return res.json({error:"User Exists"});
-        // }
-        await roominfo.create({
-            title,
-            location,
-            images,
-            guest,
-            rooms,
-        });
-        res.send({status:"ok"});
-    }  catch(err){
-        console.log(err);
-        res.send({status:"error"});
+    if (res.status(201)) {
+      return res.json({ status: "Login successful", data: token });
+    } else {
+      return res.json({ error: "error" });
     }
-})
+  }
+  res.json({ status: "perror", error: "Invalid Password" });
+});
 
+app.post("/userData", async (req, res) => {
+  const { token } = req.body;
+  try {
+    const user = jwt.verify(token, JWT_SECRET, (err, res) => {
+      if (err) {
+        return "token expired";
+      }
+      return res;
+    });
+    console.log(user);
+    if (user == "token expired") {
+      return res.send({ status: "error", data: "token expired" });
+    }
 
+    const useremail = user.email;
+    User.findOne({ email: useremail })
+      .then((data) => {
+        res.send({ status: "ok", data: data });
+      })
+      .catch((error) => {
+        res.send({ status: "error", data: error });
+      });
+  } catch (error) {}
+});
 
 
 app.listen(5000,() => {

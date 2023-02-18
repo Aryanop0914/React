@@ -1,16 +1,17 @@
 import React,{ useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 export default function Signup(){
+  const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
 
-  function handleSubmit(e){
+  const handleSubmit=(e)=>{
     e.preventDefault();
     console.log(username,email,password);
-    fetch("http://localhost:5000/register",{
+    fetch("http://localhost:5000/signup",{
       method:"POST",
       crossDomain:true,
       headers:{
@@ -31,6 +32,7 @@ export default function Signup(){
         }else{
           console.log(data,"Registration Successful");
           window.alert("Registration Successful Login by the login page");
+          navigate("/login");
         }
 
     })

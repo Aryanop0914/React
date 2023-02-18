@@ -1,26 +1,14 @@
-const mongoose= require("mongoose");
+const mongoose = require("mongoose");
 
-const UserDetailsSchema = new mongoose.Schema({
+const UserDetailsScehma = new mongoose.Schema(
+  {
     username: String,
-    email: {type:String, unique:true},
-    password:String,
-},{
-    collection: "Userinfo",
-}
+    email: { type: String, unique: true },
+    password: String,
+  },
+  {
+    collection: "UserInfo",
+  }
 );
-mongoose.model("Userinfo",UserDetailsSchema);
 
-const OwnersSchema = new mongoose.Schema({
-    title: String,
-    location: String,
-    images:{
-        data:Buffer,
-        contentType:String
-    },
-    guest:String,
-    rooms:String,
-},{
-    collection: "Ownerinfo",
-}
-);
-mongoose.model("Ownerinfo",OwnersSchema);
+mongoose.model("UserInfo", UserDetailsScehma);

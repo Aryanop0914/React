@@ -32,7 +32,7 @@ export default function Login() {
         }
       if(data.status==="perror")
       {
-        window.alert("Login successful");
+        window.alert("Password is incorrect");
       }
     })
   }

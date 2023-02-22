@@ -94,7 +94,7 @@ app.post("/userData", async (req, res) => {
 
 require("./ownerDetails");
 const Ownerde = mongoose.model("OwnerInfo");
-app.post("/uploadde",async(req,res)=>{
+app.post("/owner",async(req,res)=>{
   const {title,location,base64,guest,rooms} = req.body;
   try{
       Ownerde.create({
@@ -109,7 +109,42 @@ app.post("/uploadde",async(req,res)=>{
   }catch(error){
       res.send({Status:"error",data:error});
   } 
-})
+});
+
+app.get("/pdisplay", async (req, res) => {
+  const { token } = req.body;
+  try {
+    const owner = jwt.verify(token, JWT_SECRET, (err, res) => {
+      if (err) {
+        return "token expired";
+      }
+      return res;
+    });
+    if (owner == "token expired") {
+      return res.send({ status: "error", data: "token expired" });
+    }
+
+    try{
+      const ownertitle = owner.title;
+    User.findOne({ title: ownertitle })
+    const ownerlocation =owner.location;
+    User.findOne({ location: ownerlocation })
+    const ownerimage =owner.image;
+    User.findOne({ image: ownerimage })
+    const ownerguest =owner.guest;
+    User.findOne({ guest: ownerguest })
+    const ownerroom=owner.rooms;
+    User.findOne({ room: ownerroom })
+
+
+    res.send({ status: "ok", data: data });
+    }
+    catch(err){
+      console.log(err);
+    }
+      
+  } catch (error) {}
+});
 
 
 app.listen(5000,() => {

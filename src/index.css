@@ -319,6 +319,13 @@ body {
 .form input{
 	width: max-content;
 }
+
+.form2 .preview img{
+	height: 300px;
+	width: 350px;
+	border: #323131 solid;
+
+}
 .Contact{
 	background-color:rgb(36, 34, 34);
 	color: white;
@@ -386,3 +393,13 @@ body {
 	background-color: rgb(76, 75, 75);
 }
 
+
+.owner{
+	text-align: center;
+	/* border: #000000 solid 2px; */
+	border-radius: 9px;
+	background-color: #ffffff;
+	margin: 5% 10%;
+	height: 20rem;
+
+}

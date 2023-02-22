@@ -23,7 +23,7 @@ export default function Form2() {
     function handleinsert(e){
         e.preventDefault();
         console.log(title,location,images,guest,rooms);
-            fetch("http://localhost:5000/uploadde",{
+            fetch("http://localhost:5000/owner",{
               method:"POST",
               crossDomain:true,
               headers:{
@@ -62,7 +62,10 @@ export default function Form2() {
             <div className="mb-3">
                 <label htmlFor="formFileMultiple" className="form-label">Images:</label>
                 <input className="form-control" type="file" accepts="image/png/jpg" onChange={converttobase64}  id="formFileMultiple" multiple/>
-            {images===""||images===null?"":<img width={100} height={100} src={images}/>} 
+            </div>
+            <div className="preview mb-3">
+                <label>Preview:</label>
+                {images===""||images===null?"":<img alt=" " src={images}/>} 
             </div>
             {/* <div className="mb-4 text-start">
                 <label htmlFor="check-in" className="form-label">Check in:</label>
@@ -79,6 +82,7 @@ export default function Form2() {
             <div className="mb-4 text-start">
                 <label htmlFor="guest" className="form-label">Rooms:</label>
                     <select className="form-select" onChange={(e)=>{setRooms(e.target.value)}} >
+                        <option >Select No. of Rooms</option>
                         <option value="1">1 Room</option>
                         <option value="2">2 Room</option>
                         <option value="3">3 Room</option>

@@ -1,9 +1,12 @@
 import React from 'react'
+// import Navbar from './Navbar'
+import Ownercard from './Ownercard'
 
 const Pdisplay = () => {
   return (
     <>
-      <h1>Property Display</h1>
+      {/* <Navbar/> */}
+      <Ownercard/>
     </>
   )
 }

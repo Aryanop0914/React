@@ -22,7 +22,7 @@ export default function Form2() {
     }
     function handleinsert(e){
         e.preventDefault();
-        // console.log(title,location,images,guest,rooms);
+        console.log(title,location,images,guest,rooms);
             fetch("http://localhost:5000/uploadde",{
               method:"POST",
               crossDomain:true,

@@ -1,11 +1,12 @@
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
-app.use(express.json());
+app.use(express.json({limit: '25mb'}));
 const cors = require("cors");
 app.use(cors());
 const bcrypt = require("bcryptjs");
-
+app.set("view engine","ejs");
+app.use(express.urlencoded({extended:false,limit: '25mb'}));
 const jwt = require("jsonwebtoken");
 const JWT_SECRET = "hvdvay6ert72839289()aiyg8t87qt72393293883uhefiuh78ttq3ifi78272jbkj?[]]pou89ywe";
 
@@ -76,7 +77,6 @@ app.post("/userData", async (req, res) => {
       }
       return res;
     });
-    console.log(user);
     if (user == "token expired") {
       return res.send({ status: "error", data: "token expired" });
     }
@@ -91,6 +91,25 @@ app.post("/userData", async (req, res) => {
       });
   } catch (error) {}
 });
+
+require("./ownerDetails");
+const Ownerde = mongoose.model("OwnerInfo");
+app.post("/uploadde",async(req,res)=>{
+  const {title,location,base64,guest,rooms} = req.body;
+  try{
+      Ownerde.create({
+        title,
+        location,
+        image:base64,
+        guest,
+        rooms,
+
+      });
+      res.send({Status:"Done"});
+  }catch(error){
+      res.send({Status:"error",data:error});
+  } 
+})
 
 
 app.listen(5000,() => {

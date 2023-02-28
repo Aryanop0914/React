@@ -403,3 +403,9 @@ body {
 	height: 20rem;
 
 }
+
+.owner img{
+	height:90%;
+	width: 90%;
+	align-items: center;
+}

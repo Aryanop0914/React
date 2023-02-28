@@ -11,7 +11,7 @@ const jwt = require("jsonwebtoken");
 const JWT_SECRET = "hvdvay6ert72839289()aiyg8t87qt72393293883uhefiuh78ttq3ifi78272jbkj?[]]pou89ywe";
 
 const mongoUrl =
-  "mongodb+srv://Aryan0914:hetal1977@sgp.bwk5tqf.mongodb.net/?retryWrites=true&w=majority";
+  "mongodb+srv://Aryan:hetal1977db.brvlcjn.mongodb.net/test";
 
   mongoose
   .connect(mongoUrl, {
@@ -111,18 +111,41 @@ app.post("/owner",async(req,res)=>{
   } 
 });
 
-app.get("/ownerdata", async (req, res) => {
+// app.get("/ownerdata", async (req, res) => {
 
+//   try {
+
+//     await Ownerde.find({}).then(data=>{
+//       res.send({status:"ok",data:data})
+//     })
+//   }catch(error){
+//     console.log(error);    
+//   }
+// });
+
+app.post("/ownerdata", async(req,res)=>{
+  const { token } = req.body;
   try {
+    const user = jwt.verify(token, JWT_SECRET, (err, res) => {
+      if (err) {
+        return "token expired";
+      }
+      return res;
+    });
+    if (user == "token expired") {
+      return res.send({ status: "error", data: "token expired" });
+    }
+    if(user){
+    try {
 
-
-    await Ownerde.find({}).then(data=>{
-      res.send({status:"ok",data:data})
-    })
-  }catch(error){
-    console.log(error);  
-  }
-
+      await Ownerde.find({}).then(data=>{
+        res.send({status:"ok",data:data})
+      })
+    }catch(error){
+      console.log(error);  
+    }
+}
+}catch(err){console.log(err);}
 });
 
 

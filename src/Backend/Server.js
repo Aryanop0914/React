@@ -11,7 +11,11 @@ const jwt = require("jsonwebtoken");
 const JWT_SECRET = "hvdvay6ert72839289()aiyg8t87qt72393293883uhefiuh78ttq3ifi78272jbkj?[]]pou89ywe";
 
 const mongoUrl =
+<<<<<<< HEAD
   "mongodb+srv://Aryan:hetal1977@db.brvlcjn.mongodb.net/?retryWrites=true&w=majority";
+=======
+  "mongodb+srv://Aryan:hetal1977db.brvlcjn.mongodb.net/test";
+>>>>>>> 3352a62f23ee47ee8a4b563c51d9cb7b2c072a90
 
   mongoose
   .connect(mongoUrl, {
@@ -113,15 +117,35 @@ app.post("/owner",async(req,res)=>{
   } 
 });
 
+<<<<<<< HEAD
 app.post("/ownerdata", async (req, res) => {
   const {token} = req.body;
   try {
     const owner = jwt.verify(token, JWT_SECRET, (err, res) => {
+=======
+// app.get("/ownerdata", async (req, res) => {
+
+//   try {
+
+//     await Ownerde.find({}).then(data=>{
+//       res.send({status:"ok",data:data})
+//     })
+//   }catch(error){
+//     console.log(error);    
+//   }
+// });
+
+app.post("/ownerdata", async(req,res)=>{
+  const { token } = req.body;
+  try {
+    const user = jwt.verify(token, JWT_SECRET, (err, res) => {
+>>>>>>> 3352a62f23ee47ee8a4b563c51d9cb7b2c072a90
       if (err) {
         return "token expired";
       }
       return res;
     });
+<<<<<<< HEAD
     if (owner == "token expired") {
       return res.send({ status: "error", data: "token expired" });
     }
@@ -133,6 +157,22 @@ app.post("/ownerdata", async (req, res) => {
     console.log(error);  
   }
 
+=======
+    if (user == "token expired") {
+      return res.send({ status: "error", data: "token expired" });
+    }
+    if(user){
+    try {
+
+      await Ownerde.find({}).then(data=>{
+        res.send({status:"ok",data:data})
+      })
+    }catch(error){
+      console.log(error);  
+    }
+}
+}catch(err){console.log(err);}
+>>>>>>> 3352a62f23ee47ee8a4b563c51d9cb7b2c072a90
 });
 
 

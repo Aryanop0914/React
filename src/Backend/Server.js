@@ -11,7 +11,7 @@ const jwt = require("jsonwebtoken");
 const JWT_SECRET = "hvdvay6ert72839289()aiyg8t87qt72393293883uhefiuh78ttq3ifi78272jbkj?[]]pou89ywe";
 
 const mongoUrl =
-  "mongodb+srv://Aryan0914:hetal1977@sgp.bwk5tqf.mongodb.net/?retryWrites=true&w=majority";
+  "mongodb+srv://Aryan:hetal1977@db.brvlcjn.mongodb.net/?retryWrites=true&w=majority";
 
   mongoose
   .connect(mongoUrl, {
@@ -46,10 +46,11 @@ app.post("/signup", async (req, res) => {
     res.send({ status: "error" });
   }
 });
-
+let email1;
 app.post("/login", async (req, res) => {
+  email1=req.body.email;
   const { email, password } = req.body;
-
+  
   const user = await User.findOne({ email });
   if (!user) {
     return res.json({ error: "User Not found" });
@@ -103,6 +104,7 @@ app.post("/owner",async(req,res)=>{
         image:base64,
         guest,
         rooms,
+        email:email1,
 
       });
       res.send({Status:"Done"});
@@ -111,12 +113,20 @@ app.post("/owner",async(req,res)=>{
   } 
 });
 
-app.get("/ownerdata", async (req, res) => {
-
+app.post("/ownerdata", async (req, res) => {
+  const {token} = req.body;
   try {
-
-
-    await Ownerde.find({}).then(data=>{
+    const owner = jwt.verify(token, JWT_SECRET, (err, res) => {
+      if (err) {
+        return "token expired";
+      }
+      return res;
+    });
+    if (owner == "token expired") {
+      return res.send({ status: "error", data: "token expired" });
+    }
+    const owneremail = owner.email;
+    await Ownerde.find({ email: owneremail}).then(data=>{
       res.send({status:"ok",data:data})
     })
   }catch(error){

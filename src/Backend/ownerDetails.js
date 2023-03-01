@@ -7,6 +7,7 @@ const OwnerDetailsScehma = new mongoose.Schema(
     image:String,
     guest:String,
     rooms:String,
+    email:String,
   },
   {
     collection: "OwnerInfo",

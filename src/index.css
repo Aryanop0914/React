@@ -399,7 +399,14 @@ body {
 	/* border: #000000 solid 2px; */
 	border-radius: 9px;
 	background-color: #ffffff;
-	margin: 5% 10%;
-	height: 20rem;
+	margin-left: 40px;
+	margin-right: 40px;
+	margin-top: 50px;
 
+}
+
+.owner .col .part1{
+	background-color: #007bff;
+	margin:10px;
+	padding:0px 0px;
 }

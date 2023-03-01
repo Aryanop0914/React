@@ -44,7 +44,6 @@ const Ownercard = () => {
                   <div className="col-8">
                       <h2>{owner.title}</h2>
                       <i class="fa-sharp fa-solid fa-location-dot"></i> {owner.location}
-
                       <h6>Max.{owner.guest} people</h6>
                       <h6>Rooms {owner.rooms}</h6>
                   </div>

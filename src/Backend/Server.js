@@ -42,7 +42,7 @@ app.post("/signup", async (req, res) => {
     });
     res.send({ status: "Successful Registration" });
   } catch (error) {
-    console.log(err);
+    console.log(error);
     res.send({ status: "error" });
   }
 });

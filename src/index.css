@@ -56,6 +56,10 @@ body {
 	cursor: pointer;
 }
 
+.navbar btn btn_danger mx-3{
+	background-color: rgba(167, 51, 30, 0.925);
+	
+}
 /* Form 1 */
 
 .form1{

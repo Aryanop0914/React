@@ -397,28 +397,10 @@ body {
 	background-color: rgb(76, 75, 75);
 }
 
-
-.owner{
-	text-align: center;
-	/* border: #000000 solid 2px; */
-	border-radius: 9px;
-	background-color: #ffffff;
-	margin-left: 40px;
-	margin-right: 40px;
-	margin-top: 50px;
-
-}
-
-
-.owner .col .part1{
-	background-color: #007bff;
-	margin:10px;
-	padding:0px 0px;
-}
-
-.owner img{
-	height:90%;
-	width: 90%;
-	align-items: center;
+.owner .container{
+	margin-top:5rem;
+	background-color:white;
+	padding:15px;
+	border-radius: 4px;
 }
 
